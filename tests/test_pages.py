@@ -1,13 +1,19 @@
 # =============================================================================
 # C O P Y R I G H T
 # -----------------------------------------------------------------------------
-# Copyright (c) 2022 by Helmut Konrad Fahrendholz. All rights reserved.
+# Copyright (c) 2019-2022 by Helmut Konrad Fahrendholz. All rights reserved.
 # This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from utilatest import mp  # pylint:disable=W0611
-from utilatest import td  # pylint:disable=W0611
+import power
 
-pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
+import pdfinfo.pages
+
+
+def test_pdfinfo_parse_pages():
+    resource = power.DOCU027_PDF
+    pages = pdfinfo.pages.determine(resource)
+
+    assert pages == 27, str(pages)
