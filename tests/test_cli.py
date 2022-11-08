@@ -49,24 +49,20 @@ def test_pdfinfo_run_invalid(cmd, td, mp):  #pylint: disable=W0613
 
 
 def test_pdfinfo_status_valid(td, mp):
-    workspace = str(td)
     valid = iamraw.PDFInfo(
         pages=42,
         generator=iamraw.Generator.MSWORD,
         version=iamraw.PDFVersion(1, 5),
     )
     raw = serializeraw.dump_pdfinfo(valid)
-    path = os.path.join(workspace, 'pdfinfo.json')
+    path = td.tmpdir.join('pdfinfo.json')
     utila.file_create(path, raw)
-
     tests.run('--status', mp=mp)
 
 
 def test_pdfinfo_status_invalid(td, mp):
-    workspace = str(td)
-    path = os.path.join(workspace, 'pdfinfo.json')
+    path = td.tmpdir.join('pdfinfo.json')
     utila.file_create(path, '{}')
-
     returncode = tests.fail('--status', mp=mp)
     assert returncode == pdfinfo.INVALID_PDF
 

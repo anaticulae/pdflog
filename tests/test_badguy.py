@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-
 import jam
 import pytest
 import utilatest
@@ -24,6 +22,6 @@ def test_badguy_longpdf(td, mp):
 
     Long files with content are excluded by file size limit.
     """
-    very_long = os.path.join(td.tmpdir, 'mejabalong.pdf')
+    very_long = td.tmpdir.join('mejabalong.pdf')
     jam.write_blank_pdf(10000, very_long)
     tests.run(f'-i {very_long}', mp=mp)
