@@ -77,7 +77,7 @@ def test_pdfinfo_stdout(td, mp, capsys):
     assert expected in stdout  # do not verify all parsed meta data
 
 
-FAIL = {power.DISS273_PDF}
+FAIL = {}
 RESOURCES = [
     pytest.param(
         item,
