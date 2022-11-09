@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-pdfminer.six>=20220524
+pdfminer.six>=20221105
 
 utila>=2.93.0<3.0.0
 iamraw>=4.88.5<5.0.0
