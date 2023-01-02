@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.1.7 (2023-01-02)
+
+### Chore
+
+* downgrade to allow dependency resolution (fd92d0b8d3b0)
+
 ## v0.1.6 (2022-12-22)
 
 ### Chore
