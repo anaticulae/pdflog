@@ -54,8 +54,9 @@ pipeline{
             }
         }
         stage('pre-release'){
-            when{not{branch 'master'}}
-            steps{sh 'baw publish --pre'}
+            steps{
+                script{baw.pre()}
+            }
         }
         stage('release'){
             steps{
