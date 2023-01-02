@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v0.1.8 (2023-01-02)
+
+### Documentation
+
+* happy New Year! (6235c8a06249)
+
+### Chore
+
+* use new pre-release (eff851f035a6)
+* use quick install (d333153302b1)
+* upgrade Jenkinsfile (4c9bf92aed4c)
+* upgrade pipe library (7a1b9cf8dc19)
+
 ## v0.1.7 (2023-01-02)
 
 ### Chore

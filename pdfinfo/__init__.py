@@ -13,7 +13,7 @@ from pdfinfo.info import generator
 from pdfinfo.pages import determine as pagecount
 from pdfinfo.version import parse as pdfversion
 
-__version__ = '0.1.7'
+__version__ = '0.1.8'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 PROCESS = 'pdfinfo'
