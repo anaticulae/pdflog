@@ -27,14 +27,7 @@ def determine(path: str) -> dict:
         infos = infos[0]
         for key, value in infos.items():
             key = key.lower()
-            value = resolve(value)
-            if isinstance(value, bytes):
-                # SEE PDFDocEncoding Character Set
-                value = pdfminer.utils.decode_text(value)
-            elif isinstance(value, list):
-                pass  # nothing todo
-            else:
-                value = utila.str2bool(value.name)
+            value = prepare(value)
             result[key] = value
     return result
 
@@ -43,3 +36,15 @@ def resolve(reference):
     with contextlib.suppress(AttributeError):
         return reference.resolve()
     return reference
+
+
+def prepare(value):
+    value = resolve(value)
+    if isinstance(value, bytes):
+        # SEE PDFDocEncoding Character Set
+        value = pdfminer.utils.decode_text(value)
+    elif isinstance(value, list):
+        pass  # nothing todo
+    else:
+        value = utila.str2bool(value.name)
+    return value
