@@ -38,6 +38,11 @@ pipeline{
                 script{baw.all()}
             }
         }
+        stage('cov'){
+            steps{
+                script{baw.cov(8, false, true)}
+            }
+        }
         stage('quality'){
             failFast true
             parallel{
@@ -53,7 +58,7 @@ pipeline{
                 }
             }
         }
-        stage('pre-release'){
+        stage('pre'){
             steps{
                 script{baw.pre()}
             }
