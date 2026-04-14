@@ -7,13 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
+import importlib.metadata
 import os
 
 from pdfinfo.info import generator
 from pdfinfo.pages import determine as pagecount
 from pdfinfo.version import parse as pdfversion
 
-__version__ = '0.2.0'
+__version__ = importlib.metadata.version('pdfinfo')
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 PROCESS = 'pdfinfo'

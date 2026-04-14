@@ -1,0 +1,68 @@
+[project]
+name = "pdfinfo"
+version = "0.2.0"
+description = ""
+readme = {file = "README", content-type = "text/markdown"}
+requires-python = ">=3.12"
+authors = [
+  {name = "Helmut Konrad Schewe", email = "helmutus@outlook.com"}
+]
+
+dependencies = [
+    "utilo>=2.107.4,<3.0.0",
+
+    "pdfminer.six>=20260107",
+    #iamraw>=4.91.0<5.0.0
+]
+
+# Optional but recommended metadata
+keywords = []
+classifiers = [
+  'Programming Language :: Python :: 3.12',
+  'Programming Language :: Python :: 3.13',
+  'Programming Language :: Python :: 3.14',
+]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[project.scripts]
+pdfinfo = "pdfinfo.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    # test data provider
+    # power==2.24.0
+    # jam==0.5.5
+    # hardcore==0.10.0
+]
+
+[project.urls]
+Homepage = "https://github.com/anaticulae/pdfinfo"
+Repository = "https://github.com/anaticulae/pdfinfo"
+
+[build-system]
+requires = [
+    "setuptools>=82.0.1",
+    "wheel>=0.46.3"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+[tool.semantic_release.changelog.default_templates]
+changelog_file = "CHANGELOG"
+[tool.semantic_release.changelog]
+mode = "init"
+output_format = "md"
+[tool.semantic_release.commit_parser_options]
+# allways generate a new version
+patch_tags = ["fix", "perf", "build", "chore", "ci", "docs", "style", "refactor", "test", "deps"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "pdfinfo",
+]
+exclude = [
+    "tests*",
+]
