@@ -11,8 +11,8 @@ import iamraw
 import power
 import pytest
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import pdfinfo
 import pdfinfo.info
@@ -54,13 +54,13 @@ def test_pdfinfo_status_valid(td, mp):
     )
     raw = serializeraw.dump_pdfinfo(valid)
     path = td.tmpdir.join('pdfinfo.json')
-    utila.file_create(path, raw)
+    utilo.file_create(path, raw)
     tests.run('--status', mp=mp)
 
 
 def test_pdfinfo_status_invalid(td, mp):
     path = td.tmpdir.join('pdfinfo.json')
-    utila.file_create(path, '{}')
+    utilo.file_create(path, '{}')
     returncode = tests.fail('--status', mp=mp)
     assert returncode == pdfinfo.INVALID_PDF
 
@@ -68,9 +68,9 @@ def test_pdfinfo_status_invalid(td, mp):
 def test_pdfinfo_stdout(td, mp, capsys):
     root = td.tmpdir
     source = power.DOCU027_PDF
-    with utilatest.increased_filecount(root, mindiff=0, maxdiff=0):
+    with utilotest.increased_filecount(root, mindiff=0, maxdiff=0):
         tests.run(f'-i {source}', mp=mp)
-    stdout = utilatest.stdout(capsys)
+    stdout = utilotest.stdout(capsys)
     expected = (
         '{"pages": 27, "generator": "latex", "version": {"major": 1, '
         '"minor": 5}, "meta": {"author": "", "title": "", "subject": "",')
@@ -81,19 +81,19 @@ FAIL = {}
 RESOURCES = [
     pytest.param(
         item,
-        id=utila.file_name(item),
+        id=utilo.file_name(item),
         marks=pytest.mark.xfail(reason='???') if item in FAIL else (),
     ) for item in power.PDF
 ]
 
 
-@utilatest.longrun
+@utilotest.longrun
 @pytest.mark.parametrize('source', RESOURCES)
 def test_huge(source, mp, tmpdir):
     cmd = f'-i {source} -o {tmpdir} --format=yaml'
     tests.run(cmd, mp=mp)
-    pagecount = utila.parse_ints(
-        utila.file_name(source),
+    pagecount = utilo.parse_ints(
+        utilo.file_name(source),
         maxcount=1,
     )[0]
     info = serializeraw.load_pdfinfo(tmpdir)

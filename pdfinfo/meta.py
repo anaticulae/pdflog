@@ -10,7 +10,7 @@
 import contextlib
 
 import pdfminer.utils
-import utila
+import utilo
 
 import pdfinfo.reader
 
@@ -21,7 +21,7 @@ def determine(path: str) -> dict:
         infos = document.info
         if not infos:
             # no meta information available
-            utila.error(f'could not read any meta information: {path}')
+            utilo.error(f'could not read any meta information: {path}')
             return {}
         assert len(infos) == 1, str(infos)
         infos = infos[0]
@@ -51,5 +51,5 @@ def prepare(value):
         # convert bytes if required
         value = [prepare(item) for item in value]
     else:
-        value = utila.str2bool(value.name)
+        value = utilo.str2bool(value.name)
     return value

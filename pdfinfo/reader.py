@@ -10,7 +10,7 @@
 import contextlib
 import sys
 
-import utila
+import utilo
 from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfdocument import PDFEncryptionError
 from pdfminer.pdfdocument import PDFSyntaxError
@@ -62,24 +62,24 @@ def open_document(parser: PDFParser, password: str) -> PDFDocument:
     except PDFSyntaxError:
         pass  # try with fallback again
     except PDFEncryptionError as encryption:
-        utila.error('encryption not supported')
-        utila.debug(encryption)
+        utilo.error('encryption not supported')
+        utilo.debug(encryption)
         sys.exit(1)
     except Exception:  # pylint:disable=broad-except
-        utila.print_stacktrace()
+        utilo.print_stacktrace()
         sys.exit(2)
         # raise PDFParserImplementationError(path) from exc
     else:
         return document
     try:
-        utila.info('try to use `fallback` pdf loader')
+        utilo.info('try to use `fallback` pdf loader')
         document = PDFDocument(parser, password, fallback=True)
     except PDFSyntaxError:
-        utila.print_stacktrace()
+        utilo.print_stacktrace()
         sys.exit(3)
         # raise InvalidPDF(path) from exc
     except Exception:  # pylint:disable=broad-except
         # raise PDFParserImplementationError(path) from exc
-        utila.print_stacktrace()
+        utilo.print_stacktrace()
         sys.exit(2)
     return document

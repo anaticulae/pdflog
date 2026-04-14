@@ -9,13 +9,13 @@
 
 import jam
 import pytest
-import utilatest
+import utilotest
 
 import tests
 
 
 @pytest.mark.timeout(120)
-@utilatest.nightly
+@utilotest.nightly
 @pytest.mark.security
 def test_badguy_longpdf(td, mp):
     """Test that program success on very long, empty pdf file.
