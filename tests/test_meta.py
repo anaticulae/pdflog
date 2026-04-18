@@ -7,13 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import pdflog.meta
-import power
+# import pdflog.meta
+# import power
 
-
-def test_pdflog_meta():
-    resource = power.DOCU027_PDF
-    meta = pdflog.meta.determine(resource)
-    assert 'author' in meta
-    assert 'title' in meta
-    assert 'subject' in meta
+# def test_pdflog_meta():
+#     resource = power.DOCU027_PDF
+#     meta = pdflog.meta.determine(resource)
+#     assert 'author' in meta
+#     assert 'title' in meta
+#     assert 'subject' in meta

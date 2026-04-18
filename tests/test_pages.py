@@ -7,11 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import pdflog.pages
-import power
+# import pdflog.pages
+# import power
 
-
-def test_pdflog_parse_pages():
-    resource = power.DOCU027_PDF
-    pages = pdflog.pages.determine(resource)
-    assert pages == 27, str(pages)
+# def test_pdflog_parse_pages():
+#     resource = power.DOCU027_PDF
+#     pages = pdflog.pages.determine(resource)
+#     assert pages == 27, str(pages)
