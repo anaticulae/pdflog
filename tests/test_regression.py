@@ -14,7 +14,6 @@
 
 # NO_PDF = __file__
 
-
 # @pytest.mark.parametrize('cmd', [
 #     pytest.param(f'-i {hardcore.single("outline_arabic_bytes")}', id='outline'),
 # ])

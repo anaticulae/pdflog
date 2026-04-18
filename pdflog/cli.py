@@ -9,12 +9,12 @@
 
 import os
 
-import pdflog.data
 import serializeraw
 import utilo
 import utilo.cli
 
 import pdflog
+import pdflog.data
 
 DESCRIPTION = """\
 Verify given -i input file that file is a valid pdf file. Extract:

@@ -21,7 +21,6 @@
 
 NO_PDF = __file__
 
-
 # @pytest.mark.parametrize(
 #     'cmd',
 #     [
@@ -36,7 +35,6 @@ NO_PDF = __file__
 # def test_pdflog_run(cmd, td, mp):  #pylint: disable=W0613
 #     tests.run(cmd, mp=mp)
 
-
 # @pytest.mark.parametrize(
 #     'cmd',
 #     [
@@ -46,7 +44,6 @@ NO_PDF = __file__
 # )
 # def test_pdflog_run_invalid(cmd, td, mp):  #pylint: disable=W0613
 #     tests.fail(cmd, mp=mp)
-
 
 # def test_pdflog_status_valid(td, mp):
 #     valid = iamraw.PDFInfo(
@@ -59,13 +56,11 @@ NO_PDF = __file__
 #     utilo.file_create(path, raw)
 #     tests.run('--status', mp=mp)
 
-
 # def test_pdflog_status_invalid(td, mp):
 #     path = td.tmpdir.join('pdflog.json')
 #     utilo.file_create(path, '{}')
 #     returncode = tests.fail('--status', mp=mp)
 #     assert returncode == pdflog.INVALID_PDF
-
 
 # def test_pdflog_stdout(td, mp, capsys):
 #     root = td.tmpdir
@@ -78,7 +73,6 @@ NO_PDF = __file__
 #         '"minor": 5}, "meta": {"author": "", "title": "", "subject": "",')
 #     assert expected in stdout  # do not verify all parsed meta data
 
-
 # FAIL = {}
 # RESOURCES = [
 #     pytest.param(
@@ -87,7 +81,6 @@ NO_PDF = __file__
 #         marks=pytest.mark.xfail(reason='???') if item in FAIL else (),
 #     ) for item in power.PDF
 # ]
-
 
 # @utilotest.longrun
 # @pytest.mark.parametrize('source', RESOURCES)

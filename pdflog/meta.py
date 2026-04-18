@@ -9,9 +9,10 @@
 
 import contextlib
 
-import pdflog.reader
 import pdfminer.utils
 import utilo
+
+import pdflog.reader
 
 
 def determine(path: str) -> dict:

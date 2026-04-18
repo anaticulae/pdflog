@@ -10,12 +10,13 @@
 import contextlib
 import sys
 
-import pdflog.data
 import utilo
 from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfdocument import PDFEncryptionError
 from pdfminer.pdfdocument import PDFSyntaxError
 from pdfminer.pdfparser import PDFParser
+
+import pdflog.data
 
 
 @contextlib.contextmanager

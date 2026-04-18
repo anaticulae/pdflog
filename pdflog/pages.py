@@ -9,8 +9,9 @@
 
 import functools
 
-import pdflog.reader
 import pdfminer.pdfpage
+
+import pdflog.reader
 
 
 @functools.lru_cache(128)
