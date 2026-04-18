@@ -10,6 +10,3 @@
 [project]
 short = pdfinfo
 name = get information
-
-[test]
-plugins=timeout
