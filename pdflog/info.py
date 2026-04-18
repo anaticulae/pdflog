@@ -8,12 +8,11 @@
 # =============================================================================
 
 import iamraw
-
-import pdfinfo.reader
+import pdflog.reader
 
 
 def generator(path: str) -> iamraw.Generator:
-    with pdfinfo.reader.read(path) as document:
+    with pdflog.reader.read(path) as document:
         try:
             info = document.info[0]
         except IndexError:

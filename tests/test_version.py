@@ -8,12 +8,11 @@
 # =============================================================================
 
 import iamraw
+import pdflog.version
 import power
 
-import pdfinfo.version
 
-
-def test_pdfinfo_parse_version():
+def test_pdflog_parse_version():
     resource = power.DOCU027_PDF
-    parsed = pdfinfo.version.parse(resource)
+    parsed = pdflog.version.parse(resource)
     assert parsed == iamraw.PDFVersion(1, 5), str(parsed)

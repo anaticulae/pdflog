@@ -1,5 +1,5 @@
 [project]
-name = "pdfinfo"
+name = "pdflog"
 version = "1.0.0"
 description = ""
 readme = {file = "README", content-type = "text/markdown"}
@@ -26,7 +26,7 @@ license = "MIT"
 license-files = ["LICENSE"]
 
 [project.scripts]
-pdfinfo = "pdfinfo.cli:main"
+pdflog = "pdflog.cli:main"
 
 [project.optional-dependencies]
 dev = [
@@ -37,8 +37,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/anaticulae/pdfinfo"
-Repository = "https://github.com/anaticulae/pdfinfo"
+Homepage = "https://github.com/anaticulae/pdflog"
+Repository = "https://github.com/anaticulae/pdflog"
 
 [build-system]
 requires = [
@@ -61,7 +61,7 @@ patch_tags = ["fix", "perf", "build", "chore", "ci", "docs", "style", "refactor"
 [tool.setuptools.packages.find]
 where = ["."]
 include = [
-    "pdfinfo",
+    "pdflog",
 ]
 exclude = [
     "tests*",

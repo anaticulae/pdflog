@@ -9,12 +9,12 @@
 
 import os
 
+import pdflog.data
 import serializeraw
 import utilo
 import utilo.cli
 
-import pdfinfo
-import pdfinfo.data
+import pdflog
 
 DESCRIPTION = """\
 Verify given -i input file that file is a valid pdf file. Extract:
@@ -28,9 +28,9 @@ If no output is given, print validation result to stdout.
 COMMANDS = [
     utilo.cli.Flag(
         '--status',
-        message=('evaluate pdfinfo.json. '
-                 'return 0 if info is valid, 4 if pdfinfo is invalid, '
-                 '2 if pdfinfo does not exists')),
+        message=('evaluate pdflog.json. '
+                 'return 0 if info is valid, 4 if pdflog is invalid, '
+                 '2 if pdflog does not exists')),
     utilo.cli.Command(
         longcut='--format',
         message='choose output format, json is default',
@@ -64,7 +64,7 @@ def main():
         config=CONFIG,
         description=DESCRIPTION,
         todo=COMMANDS,
-        version=pdfinfo.__version__,
+        version=pdflog.__version__,
     )
     args = utilo.parse(parser)
     inpath, outpath = utilo.sources(args, singleinput=True)  # pylint:disable=W0632
@@ -90,27 +90,27 @@ def validate(inpath, outpath, ext='json', strict: bool = False) -> int:
         return utilo.INVALID_COMMAND
     assert os.path.exists(inpath), f'invalid inpath: {inpath}'
     try:
-        parsed = pdfinfo.data.parse(inpath)
+        parsed = pdflog.data.parse(inpath)
     except ValueError:
         # not a valid pdf file
         parsed = None
     if parsed is None and strict:
         utilo.error(f'invalid pdf file: {inpath}')
-        return pdfinfo.INVALID_PDF
+        return pdflog.INVALID_PDF
     raw = '{}'
     if parsed is not None:
         try:
             raw = serializeraw.dump_pdfinfo(parsed, ext)
         except TypeError as error:
             utilo.error(error)
-            utilo.error('could not dump pdfinfo')
+            utilo.error('could not dump pdflog')
             return utilo.FAILURE
     if outpath is None:
         # print to stdout
         utilo.log(raw)
     else:
         if os.path.isdir(outpath):
-            outpath = os.path.join(outpath, f'pdfinfo.{ext}')
+            outpath = os.path.join(outpath, f'pdflog.{ext}')
         assert str(outpath).endswith(
             ext), f'missmatching --format and --outpath {outpath}'
         utilo.file_replace(outpath, raw)
@@ -118,12 +118,12 @@ def validate(inpath, outpath, ext='json', strict: bool = False) -> int:
 
 
 def status(path: str) -> int:
-    source = os.path.join(path, 'pdfinfo.json')
+    source = os.path.join(path, 'pdflog.json')
     if not os.path.exists(source):
         utilo.error(f'path: {source} does not exists')
         return utilo.INVALID_COMMAND
     # load status
     parsed = utilo.file_read(source)
     if parsed == '{}':
-        return pdfinfo.INVALID_PDF
+        return pdflog.INVALID_PDF
     return utilo.SUCCESS

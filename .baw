@@ -8,5 +8,5 @@
 # =============================================================================
 
 [project]
-short = pdfinfo
+short = pdflog
 name = get information

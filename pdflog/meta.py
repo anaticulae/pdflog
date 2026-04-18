@@ -9,15 +9,14 @@
 
 import contextlib
 
+import pdflog.reader
 import pdfminer.utils
 import utilo
-
-import pdfinfo.reader
 
 
 def determine(path: str) -> dict:
     result = {}
-    with pdfinfo.reader.read(path) as document:
+    with pdflog.reader.read(path) as document:
         infos = document.info
         if not infos:
             # no meta information available

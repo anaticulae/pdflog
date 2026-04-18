@@ -10,13 +10,13 @@
 import importlib.metadata
 import os
 
-from pdfinfo.info import generator
-from pdfinfo.pages import determine as pagecount
-from pdfinfo.version import parse as pdfversion
+from pdflog.info import generator
+from pdflog.pages import determine as pagecount
+from pdflog.version import parse as pdfversion
 
-__version__ = importlib.metadata.version('pdfinfo')
+__version__ = importlib.metadata.version('pdflog')
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-PROCESS = 'pdfinfo'
+PROCESS = 'pdflog'
 
 INVALID_PDF = 4

@@ -3,7 +3,7 @@
 VERSION := $(shell git rev-parse --short HEAD 2>/dev/null || echo "latest")
 CURDIR := $(CURDIR)
 
-NAME = pdfinfo
+NAME = pdflog
 IMAGE := $(NAME):$(VERSION)
 IMAGE_BASE_NAME := ghcr.io/anaticulae/$(IMAGE)
 IMAGE_TEST_NAME := ghcr.io/anaticulae/$(IMAGE)-test

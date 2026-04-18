@@ -8,12 +8,11 @@
 # =============================================================================
 
 import iamraw
+import pdflog.info
 import power
 
-import pdfinfo.info
 
-
-def test_pdfinfo_info_generator():
+def test_pdflog_info_generator():
     resource = power.DOCU027_PDF
-    generator = pdfinfo.info.generator(resource)
+    generator = pdflog.info.generator(resource)
     assert generator == iamraw.Generator.LATEX, str(generator)

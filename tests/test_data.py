@@ -10,12 +10,12 @@
 import power
 import serializeraw
 
-import pdfinfo.data
+import pdflog.data
 
 
-def test_pdfinfo_data_jsonify():
+def test_pdflog_data_jsonify():
     resource = power.DOCU027_PDF
-    info = pdfinfo.data.parse(resource)
+    info = pdflog.data.parse(resource)
     # dump it
     jsoned = serializeraw.dump_pdfinfo(info)
     assert isinstance(jsoned, str), str(jsoned)

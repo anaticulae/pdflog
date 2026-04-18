@@ -9,14 +9,13 @@
 
 import functools
 
+import pdflog.reader
 import pdfminer.pdfpage
-
-import pdfinfo.reader
 
 
 @functools.lru_cache(128)
 def determine(path: str) -> int:
-    with pdfinfo.reader.read(path) as document:
+    with pdflog.reader.read(path) as document:
         pages = list(pdfminer.pdfpage.PDFPage.create_pages(document))
     result = len(pages)
     return result

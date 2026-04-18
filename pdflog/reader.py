@@ -10,13 +10,12 @@
 import contextlib
 import sys
 
+import pdflog.data
 import utilo
 from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfdocument import PDFEncryptionError
 from pdfminer.pdfdocument import PDFSyntaxError
 from pdfminer.pdfparser import PDFParser
-
-import pdfinfo.data
 
 
 @contextlib.contextmanager
@@ -34,7 +33,7 @@ def read(path: str, password: str = None, verify: bool = True) -> PDFDocument:
     Yields:
         PDFDocument: open pdf file
     """
-    if verify and pdfinfo.version.parse(path) is None:
+    if verify and pdflog.version.parse(path) is None:
         raise ValueError(f'invalid pdf header: {path}')
     with open(path, 'rb') as fp:
         # Create a PDF parser object associated with the file object.

@@ -9,8 +9,8 @@
 
 import utilotest
 
-import pdfinfo
+import pdflog
 
-run, fail = utilotest.create_cli_runner(pdfinfo)
+run, fail = utilotest.create_cli_runner(pdflog)
 
 security = utilotest.register_marker('security')

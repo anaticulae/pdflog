@@ -8,15 +8,15 @@
 # =============================================================================
 
 import iamraw
+import pdflog.info
+import pdflog.version
 import power
 import pytest
 import serializeraw
 import utilo
 import utilotest
 
-import pdfinfo
-import pdfinfo.info
-import pdfinfo.version
+import pdflog
 import tests
 
 NO_PDF = __file__
@@ -31,41 +31,41 @@ NO_PDF = __file__
     pytest.param(f'-i {power.MASTER089_PDF}', id='master89'),
     pytest.param(f'-i {power.MASTER098_PDF}', id='master98'),
 ])
-def test_pdfinfo_run(cmd, td, mp):  #pylint: disable=W0613
+def test_pdflog_run(cmd, td, mp):  #pylint: disable=W0613
     tests.run(cmd, mp=mp)
 
 
 @pytest.mark.parametrize(
     'cmd',
     [
-        pytest.param(f'-i {pdfinfo.ROOT}', id='input_directory'),
+        pytest.param(f'-i {pdflog.ROOT}', id='input_directory'),
         pytest.param(f'-i {__file__} --strict', id='no_pdf_file'),
     ],
 )
-def test_pdfinfo_run_invalid(cmd, td, mp):  #pylint: disable=W0613
+def test_pdflog_run_invalid(cmd, td, mp):  #pylint: disable=W0613
     tests.fail(cmd, mp=mp)
 
 
-def test_pdfinfo_status_valid(td, mp):
+def test_pdflog_status_valid(td, mp):
     valid = iamraw.PDFInfo(
         pages=42,
         generator=iamraw.Generator.MSWORD,
         version=iamraw.PDFVersion(1, 5),
     )
     raw = serializeraw.dump_pdfinfo(valid)
-    path = td.tmpdir.join('pdfinfo.json')
+    path = td.tmpdir.join('pdflog.json')
     utilo.file_create(path, raw)
     tests.run('--status', mp=mp)
 
 
-def test_pdfinfo_status_invalid(td, mp):
-    path = td.tmpdir.join('pdfinfo.json')
+def test_pdflog_status_invalid(td, mp):
+    path = td.tmpdir.join('pdflog.json')
     utilo.file_create(path, '{}')
     returncode = tests.fail('--status', mp=mp)
-    assert returncode == pdfinfo.INVALID_PDF
+    assert returncode == pdflog.INVALID_PDF
 
 
-def test_pdfinfo_stdout(td, mp, capsys):
+def test_pdflog_stdout(td, mp, capsys):
     root = td.tmpdir
     source = power.DOCU027_PDF
     with utilotest.increased_filecount(root, mindiff=0, maxdiff=0):
@@ -96,5 +96,5 @@ def test_huge(source, mp, tmpdir):
         utilo.file_name(source),
         maxcount=1,
     )[0]
-    info = serializeraw.load_pdfinfo(tmpdir)
+    info = serializeraw.load_pdflog(tmpdir)
     assert info.pages == pagecount, str(info)

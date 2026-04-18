@@ -8,21 +8,20 @@
 # =============================================================================
 
 import iamraw
-
-import pdfinfo.info
-import pdfinfo.meta
-import pdfinfo.pages
-import pdfinfo.version
+import pdflog.info
+import pdflog.meta
+import pdflog.pages
+import pdflog.version
 
 
 def parse(path: str) -> iamraw.PDFInfo:
-    version = pdfinfo.version.parse(path)
+    version = pdflog.version.parse(path)
     if not version:
         # invalid file
         return None
-    pages = pdfinfo.pages.determine(path)
-    generator = pdfinfo.info.generator(path)
-    meta = pdfinfo.meta.determine(path)
+    pages = pdflog.pages.determine(path)
+    generator = pdflog.info.generator(path)
+    meta = pdflog.meta.determine(path)
     info = iamraw.PDFInfo(
         pages=pages,
         version=version,
